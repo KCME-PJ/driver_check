@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ユーザーリスト</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand">管理画面</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page">ドライバーリスト</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            管理メニュー
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="./user_submit.html">ドライバー登録</a></li>
+                            <li><a class="dropdown-item" href="../question/question_submit.html">質問登録</a></li>
+                            <li><a class="dropdown-item" href="../question/question_list.php">設問リスト</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="http://pc6140/task/index.php">安全品質課ポータル</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-3">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">運転者ID</th>
+                    <th scope="col">社員番号</th>
+                    <th scope="col">氏名</th>
+                    <th scope="col">メールアドレス</th>
+                    <th scope="col">登録日</th>
+                    <th scope="col">Pass最終更新日</th>
+                    <th scope="col">削除</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                require_once '../db_access/database.php';
+                $i = 0;
+                $sql = <<<SQL
+                        SELECT * FROM drivers;
+                        SQL;
+                try {
+                    $dbh = getDb();
+                    $stmt = $dbh->query($sql);
+                    foreach ($stmt as $row) {
+                        $d_id = $row['d_id'];
+                        $driver_id = $row['driver_id'];
+                        $employee = $row['employee_number'];
+                        $fname = $row['f_name'];
+                        $lname = $row['l_name'];
+                        $mail = $row['email'];
+                        $reset_at = $row['reset_at'];
+                        $create = $row['create_at'];
+                        $msg = $lname . 'さんを削除しても大丈夫ですか？';
+                        ++$i;
+                        print <<<EOD
+                                <tr>
+                                    <th scope="row">$i</th>
+                                    <td>$driver_id</td>
+                                    <td>$employee</td>
+                                    <td>"$lname. $fname"</td>
+                                    <td>$mail</td>
+                                    <td>$create</td>
+                                    <td>$reset_at</td>
+                                    <td>
+                                        <a class="btn btn-outline-danger btn-sm" href="user_delete.php?id=$d_id" onclick="return confirm('$msg')">
+                                        <i class="bi bi-trash3-fill"></i></a>
+                                    </td>
+                                </tr>
+                                EOD;
+                    }
+                } catch (PDOException $e) {
+                    print "ERR! : {$e->getMessage()}";
+                } finally {
+                    $pdo = null;
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- bootstrap-script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+
+</html>

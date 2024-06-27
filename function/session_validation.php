@@ -1,20 +1,23 @@
 <?php
-function session_vali($mail, $user_pass)
+function session_vali($email, $pass)
 {
+    $result = null;
     $sql = <<<SQL
-    SELECT email, pass FROM drivers WHERE email = ?;
+    SELECT * FROM drivers WHERE email = ?;
     SQL;
 
     $dbh = getDb();
     $sth = $dbh->prepare($sql);
-    $sth->bindValue(1, $mail, PDO::PARAM_STR);
+    $sth->bindValue(1, $email, PDO::PARAM_STR);
     $sth->execute();
     $user_info = $sth->fetch();
 
-    if (password_verify($user_pass, $user_info['pass'])) {
-        return "1";
+    if (password_verify($pass, $user_info['pass'])) {
+        $result = 1;
+        return $result;
     } else {
-        return "0";
+        $result = 0;
+        return $result;
     }
 
     $dbh = null;

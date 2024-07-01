@@ -10,5 +10,6 @@ $user_valid = session_vali($email, $pass);
 if ($user_valid == 0) {
     header('Location: ./login_err.html');
 } else {
+    $_SESSION['join'] = $email;     //sessionにメールアドレスを記録
     header('Location: ../index.php');
 }

@@ -28,14 +28,22 @@
                 </thead>
                 <tbody>
                     <?php
+                    session_start();
+                    if (!isset($_SESSION['join'])) {
+                        header('location: ./login.html');
+                        exit();
+                    }
                     require_once './db_access/database.php';
                     require_once './function/questions.php';
+                    require_once './function/session_user.php';
+                    $email = $_SESSION['join'];
+                    $user = session_user($email);
                     $q_table = question_tbl();
                     echo $q_table;
                     ?>
                 </tbody>
             </table>
-            <input type="hidden" name="driver_id" value="5">
+            <input type="hidden" name="d_id" value="<?php echo $user[2]; ?>">
             <button type="submit" class="btn btn-outline-success mb-3">送信</button>
         </form>
     </div>

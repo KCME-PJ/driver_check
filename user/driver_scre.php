@@ -11,8 +11,16 @@
 
 <body>
     <?php
+    session_start();
+    if (!isset($_SESSION['join'])) {
+        header('location: ./login.html');
+        exit();
+    }
     require_once '../db_access/database.php';
     require_once '../function/scoring.php';
+    require_once '../function/session_user.php';
+    $email = $_SESSION['join'];
+    $user = session_user($email);
     $sql_ev = <<<SQL
     SELECT * FROM evaluations WHERE ev_id = ?
     SQL;
@@ -22,7 +30,7 @@
     $sth->execute();
     $evaluation = $sth->fetch(PDO::FETCH_ASSOC);
 
-    $d_id = 5;
+    $d_id = $user[2];
     $score = scoring($d_id);
     $total_score = $score[0];
     $time_stamp = strtotime($score[1]);
@@ -129,7 +137,7 @@
                 </div>
             </div>
             <div class="col-sm mt-3">
-                <p class="mt-3">〇〇さんの結果（<?php echo date('Y年m月d日_H時i分 回答', $time_stamp); ?>）</p>
+                <p class="mt-3"><?php echo $user[0] . " " . $user[1]; ?>さんの結果（<?php echo date('Y年m月d日_H時i分 回答', $time_stamp); ?>）</p>
                 <hr>
                 <p><b>総合得点：<?php echo $total_score ?></b></p>
                 <hr>

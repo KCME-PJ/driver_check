@@ -11,9 +11,9 @@ function session_user($mail)
     $sth->execute();
     $user_info = $sth->fetch();
     $l_name = $user_info['l_name'];
-    $f_name = $user_info['fname'];
-    $driver_id = $user_info['driver_id'];
+    $f_name = $user_info['f_name'];
+    $d_id = $user_info['d_id'];
 
     $dbh = null;
-    return array($l_name, $f_name, $driver_id);
+    return array($l_name, $f_name, $d_id);
 }

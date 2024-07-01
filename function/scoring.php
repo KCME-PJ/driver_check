@@ -16,7 +16,8 @@ function scoring($d_id)
 
         for ($i = 1; $i <= 50; $i++) {
             $q_id = $i;
-            $user_answer = $answer["qa_$i"];
+            $qa = "qa_" . $i;
+            $user_answer = $answer["$qa"];
 
             $sql_question = <<<SQL
         SELECT answer, diagnosis FROM questions WHERE q_id = ?

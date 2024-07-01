@@ -1,5 +1,5 @@
 <?php
-$d_id = filter_input(INPUT_POST, 'driver_id');
+$d_id = filter_input(INPUT_POST, 'd_id');
 $qa_1 = filter_input(INPUT_POST, 'btn_radio1');
 $qa_2 = filter_input(INPUT_POST, 'btn_radio2');
 $qa_3 = filter_input(INPUT_POST, 'btn_radio3');

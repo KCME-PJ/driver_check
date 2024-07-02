@@ -29,12 +29,16 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="./user_submit.html">ドライバー登録</a></li>
-                            <li><a class="dropdown-item" href="../question/question_submit.html">質問登録</a></li>
+                            <li><a class="dropdown-item" href="../question/question_submit.php">質問登録</a></li>
                             <li><a class="dropdown-item" href="../question/question_list.php">設問リスト</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <li><a class="dropdown-item" href="http://pc6140/task/index.php">安全品質課ポータル</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="./logout.php">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -57,6 +61,11 @@
             </thead>
             <tbody>
                 <?php
+                session_start();
+                if (!isset($_SESSION['join'])) {
+                    header('location: ../login.html');
+                    exit();
+                }
                 require_once '../db_access/database.php';
                 $i = 0;
                 $sql = <<<SQL

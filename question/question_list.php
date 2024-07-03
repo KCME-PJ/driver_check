@@ -11,6 +11,18 @@
 </head>
 
 <body>
+    <?php
+    session_start();
+    if (!isset($_SESSION['join'])) {
+        header('location: ../login.html');
+        exit();
+    }
+    require_once '../db_access/database.php';
+    require_once '../function/session_user.php';
+    $email = $_SESSION['join'];
+    $user = session_user($email);
+    $name = $user[0] . " " . $user[1];
+    ?>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand">管理画面</a>
@@ -18,25 +30,40 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page">質問リスト</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            管理メニュー
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../user/user_submit.html">ドライバー登録</a></li>
-                            <li><a class="dropdown-item" href="../user/user_list.php">ドライバーリスト</a></li>
-                            <li><a class="dropdown-item" href="./question_submit.html">質問登録</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="http://pc6140/task/index.php">安全品質課ポータル</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                <div class="navbar-left">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page">ドライバー登録</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                管理メニュー
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="../user/user_submit.php">ドライバー登録</a></li>
+                                <li><a class="dropdown-item" href="../user/user_list.php">ドライバーリスト</a></li>
+                                <li><a class="dropdown-item" href="../question/question_submit.php">設問登録</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="http://pc6140/task/index.php">安全品質課ポータル</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-fill"></i>&nbsp;
+                                <?php echo "$name さん"; ?>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="./logout.php">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>

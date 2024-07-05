@@ -100,14 +100,14 @@
                         $mail = $row['email'];
                         $reset_at = $row['reset_at'];
                         $create = $row['create_at'];
-                        $msg = $lname . 'さんを削除しても大丈夫ですか？';
+                        $msg = "$lname さんを削除しても大丈夫ですか？";
                         ++$i;
                         print <<<EOD
                                 <tr>
                                     <th scope="row">$i</th>
                                     <td>$driver_id</td>
                                     <td>$employee</td>
-                                    <td>"$lname. $fname"</td>
+                                    <td>"$lname $fname"</td>
                                     <td>$mail</td>
                                     <td>$create</td>
                                     <td>$reset_at</td>

@@ -21,6 +21,29 @@
     require_once '../function/session_user.php';
     $email = $_SESSION['join'];
     $user = session_user($email);
+    $name = $user[0] . " " . $user[1];
+    ?>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-fill"></i>&nbsp;<?php echo "$name さん"; ?>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="./user/logout.php">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <?php
+    require_once '../db_access/database.php';
+    require_once '../function/scoring.php';
     $sql_ev = <<<SQL
     SELECT * FROM evaluations WHERE ev_id = ?
     SQL;

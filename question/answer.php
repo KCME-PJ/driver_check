@@ -115,4 +115,4 @@ try {
 } finally {
     $dbh = null;
 }
-header('Location: ../user/driver_scre.php');
+header('Location: ../user/index.php');

@@ -11,11 +11,41 @@
 </head>
 
 <body>
+    <?php
+    session_start();
+    if (!isset($_SESSION['join'])) {
+        header('location: ./login.html');
+        exit();
+    }
+    require_once './db_access/database.php';
+    require_once './function/session_user.php';
+    $email = $_SESSION['join'];
+    $user = session_user($email);
+    $name = $user[0] . " " . $user[1];
+    ?>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-fill"></i>&nbsp;<?php echo "$name さん"; ?>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="./user/logout.php">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
     <h3 class="text-center" style="background-color: rgb(149, 241, 203); font-family: Meiryo UI;">ドライバー安全レベルチェック</h3>
     <div class="container mt-3">
         <b>
             <p style="font-family: Meiryo UI;">次の質問を読んで、自分に当てはまれば「〇」当てはまらない場合は「×」を選択してください。<br>
-                【注意】ブラウザの「戻る」ボタンを押すと質問と回答がリセットされます。 </p>
+                【注意】ブラウザの「戻る」ボタンや「<i class="bi bi-arrow-clockwise"></i>」ボタンを押すと質問と回答がリセットされます。 </p>
         </b>
         <form action="./question/answer.php" method="post">
             <table class="table table-striped align-middle" style="font-family: Meiryo UI;">
@@ -28,14 +58,8 @@
                 </thead>
                 <tbody>
                     <?php
-                    session_start();
-                    if (!isset($_SESSION['join'])) {
-                        header('location: ./login.html');
-                        exit();
-                    }
                     require_once './db_access/database.php';
                     require_once './function/questions.php';
-                    require_once './function/session_user.php';
                     $email = $_SESSION['join'];
                     $user = session_user($email);
                     $q_table = question_tbl();

@@ -21,6 +21,11 @@
     require_once '../function/session_user.php';
     $email = $_SESSION['join'];
     $user = session_user($email);
+    $auth = $user[3];
+    $d_id = $user[2];
+    if ($auth == 0) {
+        header('Location: ../user/auth_ng.html');
+    }
     $name = $user[0] . " " . $user[1];
     ?>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">

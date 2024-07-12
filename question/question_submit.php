@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ドライバー安全レベルチェック ログイン</title>
+    <title>設問登録</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -21,6 +21,11 @@
     require_once '../function/session_user.php';
     $email = $_SESSION['join'];
     $user = session_user($email);
+    $auth = $user[3];
+    $d_id = $user[2];
+    if ($auth == 0) {
+        header('Location: ../user/auth_ng.html');
+    }
     $name = $user[0] . " " . $user[1];
     ?>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">

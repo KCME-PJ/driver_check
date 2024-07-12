@@ -23,18 +23,15 @@
                     <div class="card-header">
                         パスワードの再設定（再設定用コード発行後2時間以内有効）
                     </div>
-                    <?php $email = filter_input(INPUT_GET, 'mail'); ?>
-                    <form action="./pw_update.php" method="post">
+                    <form action="./user/pw_update.php" method="post">
                         <div class="card-body">
                             <div class="row">
                                 <label class="form-label">再設定用のコードが送信されました。</label>
-                                <label class="form-label">コードと新しいパスワードを入力して、Resetボタンを押してください。</label>
+                                <label class="form-label">メールアドレスおよびコードと新しいパスワードを入力して、Resetボタンを押してください。</label>
                                 <label class="form-label">※メールが届いていない場合は、入力されたメールアドレスが間違えていないかご確認ください。</label>
-                                <label class="form-label">入力されたメールアドレス</label>
-                                <label class="form-label">---<?php echo $email; ?>---</label>
+                                <input class="form-control col-sm-1 mt-3" type="mail" name="mail" placeholder="Email" required>
                                 <input class="form-control col-sm-1 mt-3" type="text" name="code" placeholder="Code" required>
                                 <input class="form-control col-sm-1 mt-3" type="password" name="pass" placeholder="New Password" required>
-                                <input type="hidden" name="mail" value="<?php echo $email; ?>">
                                 <button type="submit" class="btn btn-primary mt-3 mb-3">Reset</button>
                             </div>
                         </div>

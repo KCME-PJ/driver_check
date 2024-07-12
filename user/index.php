@@ -21,9 +21,14 @@
     require_once '../db_access/database.php';
     require_once '../function/scoring.php';
     require_once '../function/session_user.php';
+    require_once '../function/answer_check.php';
     $email = $_SESSION['join'];
     $user = session_user($email);
     $name = $user[0] . " " . $user[1];
+    $answer = answer_chech($user[2]);
+    if ($answer == 0) {
+        header('location: ../index.php');
+    }
     ?>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">

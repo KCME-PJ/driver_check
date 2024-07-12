@@ -27,7 +27,7 @@ if ($m_vali == 1) {
     $email->setSubject("交通安全事務局からセキュリティコードをお送りします");
     $email->addTo("$e_mail", "$name");
     $email->addContent("text/plain", "パスワードの再設定依頼を受け付けました。（再設定用コード発行後2時間以内有効）
-    設定用のコード：$code
+    再設定用のコード：$code
     
     【注意】このコードは誰とも共有しないでください。");
     $sendgrid = new \SendGrid(SENDGRID_API_KEY);

@@ -7,7 +7,7 @@ $email->setFrom("kotsu-anzen@kcme.jp", "交通安全事務局");
 $email->setSubject("交通安全事務局からセキュリティコードをお送りします");
 $email->addTo("ken-fujita@kcme.jp", "テスト太郎さん");
 $email->addContent("text/plain", "パスワードの再設定依頼を受け付けました。（再設定用コード発行後2時間以内有効）
-設定用のコード：1234
+再設定用のコード：1234
 
 【注意】このコードは誰とも共有しないでください。");
 

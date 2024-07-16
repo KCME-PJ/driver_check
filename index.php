@@ -19,8 +19,15 @@
     }
     require_once './db_access/database.php';
     require_once './function/session_user.php';
+    require_once './function/check_answer-time.php';
+
     $email = $_SESSION['join'];
     $user = session_user($email);
+    $d_id = $user[2];
+    $a_time = answer_time($d_id);
+    if ($a_time == 0) {
+        header('Location: ./user/caution.html');
+    }
     $name = $user[0] . " " . $user[1];
     ?>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">

@@ -18,10 +18,16 @@
         exit();
     }
     require_once './db_access/database.php';
+    require_once './function/session_check.php';
     require_once './function/session_user.php';
     require_once './function/check_answer-time.php';
 
     $email = $_SESSION['join'];
+    $session_check = s_check($email);
+    if ($session_check == 0) {
+        header('location: ./login.html');
+        exit();
+    }
     $user = session_user($email);
     $d_id = $user[2];
     $a_time = answer_time($d_id);

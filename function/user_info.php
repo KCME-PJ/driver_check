@@ -11,7 +11,7 @@ function user($d_id)
     $user_info = $sth->fetch();
     $l_name = $user_info['l_name'];
     $f_name = $user_info['f_name'];
-    $driver_id = $user_info['driver_id'];
+    $employee = $user_info['employee_number'];
 
     require_once '../function/scoring.php';
     $score = scoring($d_id);
@@ -90,5 +90,5 @@ function user($d_id)
         }
     }
     $dbh = null;
-    return array($l_name, $f_name, $d_id, $driver_id, $total_score, $total_judge, $ans1, $ans1_judge, $ans2, $ans2_judge, $ans3, $ans3_judge, $ans4, $ans4_judge, $ans5, $ans5_judge, $time_stamp);
+    return array($l_name, $f_name, $d_id, $employee, $total_score, $total_judge, $ans1, $ans1_judge, $ans2, $ans2_judge, $ans3, $ans3_judge, $ans4, $ans4_judge, $ans5, $ans5_judge, $time_stamp);
 }

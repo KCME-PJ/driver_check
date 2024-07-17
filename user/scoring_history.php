@@ -92,7 +92,7 @@
             <thead>
                 <tr class="text-center">
                     <th scope="col">テスト日</th>
-                    <th scope="col">運転者ID</th>
+                    <th scope="col">社員番号</th>
                     <th scope="col">氏名</th>
                     <th colspan="2">総合得点</th>
                     <th colspan="2">気分の安定</th>

@@ -25,9 +25,9 @@
     $email = $_SESSION['join'];
     $user = session_user($email);
     $name = $user[0] . " " . $user[1];
-    $answer = answer_chech($user[2]);
+    $answer = answer_chech($user[2]);       //テスト回答履歴が無ければテスト実施ページへ遷移する
     if ($answer == 0) {
-        header('location: ../index.php');
+        header('location: ../index.php');   //ここがテスト実施ページ
     }
     ?>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">

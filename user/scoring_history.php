@@ -122,7 +122,41 @@
                 </tr>
             </tbody>
         </table>
-
+    </div>
+    <div class="container">
+        <form class="row g-3 mt-3" action="./user_update.php" method="post">
+            <div class="col-xl-2">
+                <label for="employee" class="form-label">社員番号</label>
+                <input type="text" class="form-control" id="employee" value="<?php echo $driver[3]; ?>" style="text-align:center" disabled>
+            </div>
+            <div class="col-xl-2">
+                <label for="driver_id" class="form-label">運転者ID</label>
+                <input type="text" class="form-control" id="driver_id" name="driver_id" value="<?php echo $driver[17]; ?>" style="text-align:right">
+            </div>
+            <div class="col-xl-2">
+                <label for="lname" class="form-label">姓（LastName）</label>
+                <input type="text" class="form-control" id="lname" name="lname" value="<?php echo $driver[0]; ?>">
+            </div>
+            <div class="col-xl-2">
+                <label for="fname" class="form-label">名（FirstName）</label>
+                <input type="text" class="form-control" id="fname" name="fname" value="<?php echo $driver[1]; ?>">
+            </div>
+            <div class="col-xl-1">
+                <label for="auth" class="form-label">アクセス権</label>
+                <input type="number" class="form-control" id="auth" name="auth" value="<?php echo $driver[18]; ?>" style="text-align:center">
+            </div>
+            <div class=" col-xl-3">
+                <label for="address" class="form-label">MailAddress</label>
+                <input type="email" class="form-control" id="address" name="address" value="<?php echo $driver[19]; ?>">
+            </div>
+            <div>
+                <input type="hidden" class="form-control" name="d_id" value="<?php echo $driver[2]; ?>">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-outline-primary">ドライバー情報修正</button>
+                ※アクセス権：[0]user、[1]admin
+            </div>
+        </form>
     </div>
 
     <!-- bootstrap-script -->

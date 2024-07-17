@@ -9,9 +9,13 @@ function user($d_id)
     $sth->bindValue(1, $d_id, PDO::PARAM_INT);
     $sth->execute();
     $user_info = $sth->fetch();
+    $driver_id = $user_info['driver_id'];
+    $auth = $user_info['access_authority'];
+    $employee = $user_info['employee_number'];
     $l_name = $user_info['l_name'];
     $f_name = $user_info['f_name'];
-    $employee = $user_info['employee_number'];
+    $f_name = $user_info['f_name'];
+    $email = $user_info['email'];
 
     require_once '../function/scoring.php';
     $score = scoring($d_id);
@@ -90,5 +94,5 @@ function user($d_id)
         }
     }
     $dbh = null;
-    return array($l_name, $f_name, $d_id, $employee, $total_score, $total_judge, $ans1, $ans1_judge, $ans2, $ans2_judge, $ans3, $ans3_judge, $ans4, $ans4_judge, $ans5, $ans5_judge, $time_stamp);
+    return array($l_name, $f_name, $d_id, $employee, $total_score, $total_judge, $ans1, $ans1_judge, $ans2, $ans2_judge, $ans3, $ans3_judge, $ans4, $ans4_judge, $ans5, $ans5_judge, $time_stamp, $driver_id, $auth, $email);
 }

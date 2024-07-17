@@ -64,7 +64,7 @@
                                 <?php echo "$name さん"; ?>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="../user/logout.php">Logout</a></li>
+                                <li><a class="dropdown-item" href="../user/logout_admin.php">Logout</a></li>
                             </ul>
                         </li>
                     </ul>

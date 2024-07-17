@@ -40,6 +40,7 @@
                                 <i class="bi bi-person-fill"></i>&nbsp;<?php echo "$name さん"; ?>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="../index.php">テスト実施</a></li>
                                 <li><a class="dropdown-item" href="./logout.php">Logout</a></li>
                             </ul>
                         </li>

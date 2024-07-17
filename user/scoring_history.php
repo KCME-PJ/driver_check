@@ -31,16 +31,13 @@
     }
     $name = $login_user[0] . " " . $login_user[1];
 
-    //$d_id = filter_input(INPUT_GET, 'd_id');
-    $d_id = "9";
+    $d_id = filter_input(INPUT_GET, 'd_id');
 
     //テスト実施履歴の有無を確認し、なければnothing.phpへ飛ばす
     $answer = answer_chech($d_id);
     if ($answer == 0) {
         header('Location: ./nothing.php');
     }
-    var_dump($answer);
-
     $driver = user($d_id);
     $driver_name = $driver[0] . " " . $driver[1];
     $score = scoring($d_id);
@@ -56,13 +53,14 @@
                 <div class="navbar-left">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page">ドライバーリスト</a>
+                            <a class="nav-link active" aria-current="page">ドライバー情報</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 管理メニュー
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="./user_list.php">ドライバーリスト</a></li>
                                 <li><a class="dropdown-item" href="./user_submit.php">ドライバー登録</a></li>
                                 <li><a class="dropdown-item" href="../question/question_submit.php">質問登録</a></li>
                                 <li><a class="dropdown-item" href="../question/question_list.php">設問リスト</a></li>

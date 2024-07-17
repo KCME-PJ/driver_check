@@ -81,6 +81,7 @@
                     <th scope="col">社員番号</th>
                     <th scope="col">氏名</th>
                     <th scope="col">メールアドレス</th>
+                    <th scope="col">権限</th>
                     <th scope="col">登録日</th>
                     <th scope="col">Pass最終更新日</th>
                     <th scope="col">詳細/削除</th>
@@ -99,6 +100,7 @@
                     foreach ($stmt as $row) {
                         $d_id = $row['d_id'];
                         $driver_id = $row['driver_id'];
+                        $auth = $row['access_authority'];
                         $employee = $row['employee_number'];
                         $fname = $row['f_name'];
                         $lname = $row['l_name'];
@@ -112,8 +114,9 @@
                                     <th scope="row">$i</th>
                                     <td>$driver_id</td>
                                     <td>$employee</td>
-                                    <td>"$lname $fname"</td>
+                                    <td>$lname $fname</td>
                                     <td>$mail</td>
+                                    <td align="center">$auth</td>
                                     <td>$create</td>
                                     <td>$reset_at</td>
                                     <td>

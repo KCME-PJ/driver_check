@@ -83,7 +83,7 @@
                     <th scope="col">メールアドレス</th>
                     <th scope="col">登録日</th>
                     <th scope="col">Pass最終更新日</th>
-                    <th scope="col">削除</th>
+                    <th scope="col">詳細/削除</th>
                 </tr>
             </thead>
             <tbody>
@@ -117,6 +117,8 @@
                                     <td>$create</td>
                                     <td>$reset_at</td>
                                     <td>
+                                        <a class="btn btn-outline-success btn-sm" href="scoring_history.php?d_id=$d_id">
+                                        <i class="bi bi-file-earmark-text"></i></a>
                                         <a class="btn btn-outline-danger btn-sm" href="user_delete.php?id=$d_id" onclick="return confirm('$msg')">
                                         <i class="bi bi-trash3-fill"></i></a>
                                     </td>

@@ -131,7 +131,7 @@
             </div>
             <div class="col-xl-2">
                 <label for="driver_id" class="form-label">運転者ID</label>
-                <input type="text" class="form-control" id="driver_id" name="driver_id" value="<?php echo $driver[17]; ?>" style="text-align:right">
+                <input type="text" minlength="3" maxlength="9" class="form-control" id="driver_id" name="driver_id" value="<?php echo $driver[17]; ?>" style="text-align:right">
             </div>
             <div class="col-xl-2">
                 <label for="lname" class="form-label">姓（LastName）</label>

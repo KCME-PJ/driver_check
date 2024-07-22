@@ -79,13 +79,12 @@
                     <p>ドライバー登録<br>
                         <i class="bi bi-person-circle" style="font-size: 5rem;"></i>
                     </p>
-
                 </div>
                 <div class="col-md-8">
-                    <form action="./user_add.php" method="post">
+                    <form action="../function/driver_post.php" method="post">
                         <div class="card-body">
                             <div class="row">
-                                <input class="form-control col-sm-1 mt-3" type="text" maxlength="9" name="e_number" placeholder="社員番号" required>
+                                <input class="form-control col-sm-1 mt-3" type="text" minlength="9" maxlength="9" name="e_number" placeholder="社員番号" required>
                                 <input class="form-control col-sm-1 mt-3" type="text" name="l_name" placeholder="苗字（LastName）" required>
                                 <input class="form-control col-sm-1 mt-3" type="text" name="f_name" placeholder="名前（FirstName）" required>
                                 <input class="form-control col-sm-1 mt-3" type="email" name="email" placeholder="Email address" required>

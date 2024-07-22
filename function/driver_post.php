@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mapper = new UserMapper($pdo);
     try {
         if ($mapper->insert($user)) {
-            header('Location: ../user/user_list.php');
+            header('Location: ../user/success.html');
             exit;
         } else {
             echo "ドライバーの登録に失敗しました。";

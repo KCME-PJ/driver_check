@@ -90,34 +90,34 @@
             <tbody>
                 <?php
                 require_once '../db_access/database.php';
+                require_once '../classes/user_status.php';
+                require_once '../classes/user_status_mapper.php';
+                $pdo = getDb();
+                $userStatusMapper = new UserStatusMapper($pdo);
+                $users = $userStatusMapper->userList();
                 $i = 0;
-                $sql = <<<SQL
-                        SELECT * FROM drivers;
-                        SQL;
-                try {
-                    $dbh = getDb();
-                    $stmt = $dbh->query($sql);
-                    foreach ($stmt as $row) {
-                        $d_id = $row['d_id'];
-                        $driver_id = $row['driver_id'];
-                        $auth = $row['access_authority'];
-                        $employee = $row['employee_number'];
-                        $fname = $row['f_name'];
-                        $lname = $row['l_name'];
-                        $mail = $row['email'];
-                        $reset_at = $row['reset_at'];
-                        $create = $row['create_at'];
-                        $msg = "$lname さんを削除しても大丈夫ですか？";
-                        ++$i;
-                        print <<<EOD
+                foreach ($users as $user) {
+                    $d_id = $user->getId();
+                    $driver_id = $user->getDriverId();
+                    $employee = $user->getEmployeeNumber();
+                    $fname = $user->getFname();
+                    $lname = $user->getLname();
+                    $mail = $user->getEmail();
+                    $access_level = $user->getAccessLevel();
+                    $create_at = $user->getCreateAt();
+                    $reset_at = $user->getResetAt();
+                    $name = $lname . " " . $fname;
+                    $msg = "$name さんを削除しても大丈夫ですか？";
+                    ++$i;
+                    print <<<EOD
                                 <tr>
                                     <th scope="row">$i</th>
                                     <td>$driver_id</td>
                                     <td>$employee</td>
-                                    <td>$lname $fname</td>
+                                    <td>$name</td>
                                     <td>$mail</td>
-                                    <td align="center">$auth</td>
-                                    <td>$create</td>
+                                    <td>$access_level</td>
+                                    <td>$create_at</td>
                                     <td>$reset_at</td>
                                     <td>
                                         <a class="btn btn-outline-success btn-sm" href="scoring_history.php?d_id=$d_id">
@@ -127,11 +127,6 @@
                                     </td>
                                 </tr>
                                 EOD;
-                    }
-                } catch (PDOException $e) {
-                    print "ERR! : {$e->getMessage()}";
-                } finally {
-                    $pdo = null;
                 }
                 ?>
             </tbody>

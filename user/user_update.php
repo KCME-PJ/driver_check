@@ -13,7 +13,7 @@ SQL;
 $dbh = getDb();
 try {
     $sth = $dbh->prepare($sql);
-    $sth->bindValue(1, $driver_id, PDO::PARAM_INT);
+    $sth->bindValue(1, $driver_id, PDO::PARAM_STR);
     $sth->bindValue(2, $auth, PDO::PARAM_INT);
     $sth->bindValue(3, $fname, PDO::PARAM_STR);
     $sth->bindValue(4, $lname, PDO::PARAM_STR);

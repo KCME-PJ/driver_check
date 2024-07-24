@@ -12,9 +12,8 @@ class UserStatusMapper
         SELECT * FROM drivers
         SQL;
         $stmt = $this->pdo->query($sql_userList);
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $users = [];
-        foreach ($rows as $row) {
+        foreach ($stmt as $row) {
             $users[] = new UserStatus(
                 $row['d_id'],
                 $row['driver_id'],

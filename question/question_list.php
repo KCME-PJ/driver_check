@@ -5,9 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>設問リスト</title>
+    <!-- bootstrap5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-
+    <!-- bootstrap5_icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <!-- bootstrap5_datatables-css -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.2/css/dataTables.bootstrap5.min.css">
 </head>
 
 <body>
@@ -77,7 +81,7 @@
             <p style="font-family: Meiryo UI;">設問を修正する場合は <font color="green"><i class="bi bi-pencil-square"></i></font> ボタン、削除は <font color="red"><i class="bi bi-trash3-fill"></i></font> ボタン</p>
         </b>
         <a class="btn btn-outline-danger btn-sm" href="./question_submit.html">設問追加</a>
-        <table class="table table-striped align-middle" style="font-family: Meiryo UI;">
+        <table id="questionList" class="table table-striped align-middle" style="font-family: Meiryo UI;">
             <thead>
                 <tr>
                     <th scope="col">項番</th>
@@ -134,7 +138,25 @@
             </tbody>
         </table>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+    <!-- bootstrap5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <!-- jquery-1.12.4 -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <!-- bootstrap5_datatables-js -->
+    <script src="https://cdn.datatables.net/2.1.2/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.1.2/js/dataTables.bootstrap5.min.js"></script>
+    <!-- datatables-日本語化js -->
+    <script>
+        $(function() {
+            // datatableの設定を変更
+            $("#questionList").DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Japanese.json"
+                },
+                // 件数切替の刻みを設定
+                lengthMenu: [5, 10, 25, 50]
+            });
+        });
     </script>
 </body>
 

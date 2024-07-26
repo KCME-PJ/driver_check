@@ -154,7 +154,9 @@
                     "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Japanese.json"
                 },
                 // 件数切替の刻みを設定
-                lengthMenu: [5, 10, 25, 50]
+                lengthMenu: [5, 10, 25, 50],
+                // tableの状態保存をONにする
+                stateSave: true
             });
         });
     </script>

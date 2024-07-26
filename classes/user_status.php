@@ -1,55 +1,48 @@
 <?php
 class UserStatus
 {
-    private $id;
-    private $driverId;
-    private $accessLevel;
-    private $employeeNumber;
-    private $lname;
-    private $fname;
+    private $d_id;
+    private $driver_id;
+    private $access_authority;
+    private $employee_number;
+    private $l_name;
+    private $f_name;
     private $email;
     private $pass;
-    private $resetCode;
-    private $resetAt;
-    private $createAt;
-    private $updateAt;
+    private $reset_code;
+    private $reset_at;
+    private $create_at;
+    private $update_at;
 
-    public function __construct($id, $driverId, $accessLevel, $employeeNumber, $lname, $fname, $email, $pass, $resetCode, $resetAt, $createAt, $updateAt)
+    public function __construct($data)
     {
-        $this->id = $id;
-        $this->driverId = $driverId;
-        $this->employeeNumber = $employeeNumber;
-        $this->lname = $lname;
-        $this->fname = $fname;
-        $this->email = $email;
-        $this->accessLevel = $accessLevel;
-        $this->createAt = $createAt;
-        $this->resetAt = $resetAt;
-        $this->pass = $pass;
-        $this->resetCode = $resetCode;
-        $this->updateAt = $updateAt;
+        foreach ($data as $key => $value) {
+            if (property_exists($this, $key)) {
+                $this->$key = $value;
+            }
+        }
     }
 
     //getメソッド
     public function getId()
     {
-        return $this->id;
+        return $this->d_id;
     }
     public function getDriverId()
     {
-        return $this->driverId;
+        return $this->driver_id;
     }
     public function getEmployeeNumber()
     {
-        return $this->employeeNumber;
+        return $this->employee_number;
     }
     public function getLname()
     {
-        return $this->lname;
+        return $this->l_name;
     }
     public function getFname()
     {
-        return $this->fname;
+        return $this->f_name;
     }
     public function getEmail()
     {
@@ -57,15 +50,15 @@ class UserStatus
     }
     public function getAccessLevel()
     {
-        return $this->accessLevel;
+        return $this->access_authority;
     }
     public function getCreateAt()
     {
-        return $this->createAt;
+        return $this->create_at;
     }
     public function getResetAt()
     {
-        return $this->resetAt;
+        return $this->reset_at;
     }
     public function getPass()
     {
@@ -73,11 +66,11 @@ class UserStatus
     }
     public function getResetCode()
     {
-        return $this->resetCode;
+        return $this->reset_code;
     }
     public function getUpdateAt()
     {
-        return $this->updateAt;
+        return $this->update_at;
     }
 
     //ステータスの参照だけなので、setメソッドは不要

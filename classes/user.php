@@ -8,7 +8,7 @@ class User
     private $email;
     private $pass;
 
-    public function __construct($id = null, $employeeNumber, $lname, $fname, $email, $pass)
+    public function __construct($id, $employeeNumber, $lname, $fname, $email, $pass)
     {
         $this->id = $id;
         $this->employeeNumber = $employeeNumber;

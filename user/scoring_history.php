@@ -135,19 +135,19 @@
             </div>
             <div class="col-xl-2">
                 <label for="lname" class="form-label">姓（LastName）</label>
-                <input type="text" class="form-control" id="lname" name="lname" value="<?php echo $driver[0]; ?>">
+                <input type="text" class="form-control" id="lname" name="lname" value="<?php echo $driver[0]; ?>" required>
             </div>
             <div class="col-xl-2">
                 <label for="fname" class="form-label">名（FirstName）</label>
-                <input type="text" class="form-control" id="fname" name="fname" value="<?php echo $driver[1]; ?>">
+                <input type="text" class="form-control" id="fname" name="fname" value="<?php echo $driver[1]; ?>" required>
             </div>
             <div class="col-xl-1">
                 <label for="auth" class="form-label">アクセス権</label>
-                <input type="number" class="form-control" id="auth" name="auth" value="<?php echo $driver[18]; ?>" style="text-align:center">
+                <input type="number" class="form-control" id="auth" name="auth" value="<?php echo $driver[18]; ?>" style="text-align:center" required>
             </div>
             <div class=" col-xl-3">
                 <label for="address" class="form-label">MailAddress</label>
-                <input type="email" class="form-control" id="address" name="address" value="<?php echo $driver[19]; ?>">
+                <input type="email" class="form-control" id="address" name="address" value="<?php echo $driver[19]; ?>" required>
             </div>
             <div>
                 <input type="hidden" class="form-control" name="d_id" value="<?php echo $driver[2]; ?>">

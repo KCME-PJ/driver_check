@@ -8,7 +8,7 @@ class UserMapper
     }
     public function insert(User $user)
     {
-        $employeeNumber = $user->getEmployeeNumber();
+        $employeeNumber = $user->getEmployeeNumber();   //User classのgetterから値を取得
         $sql_duplicate = <<<SQL
         SELECT COUNT(*) FROM drivers WHERE employee_number = :employeeNumber
         SQL;

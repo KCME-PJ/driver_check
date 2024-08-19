@@ -36,12 +36,18 @@
     //テスト実施履歴の有無を確認し、なければnothing.phpへ飛ばす
     $answer = answer_chech($d_id);
     if ($answer == 0) {
-        header('Location: ./nothing.php');
+        header("Location: ./nothing.php?d_id=$d_id");
     }
     $driver = user($d_id);
     $driver_name = $driver[0] . " " . $driver[1];
     $score = scoring($d_id);
     $time_stamp = strtotime($score[1]);
+    $ans_1 = $driver[6];
+    $ans_2 = $driver[8];
+    $ans_3 = $driver[10];
+    $ans_4 = $driver[12];
+    $ans_5 = $driver[14];
+    $genre = $ans_1 . "," . $ans_2 . "," . $ans_3 . "," . $ans_4 . "," . $ans_5;
     ?>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -124,41 +130,75 @@
         </table>
     </div>
     <div class="container">
-        <form class="row g-3 mt-3" action="./user_update.php" method="post">
-            <div class="col-xl-2">
-                <label for="employee" class="form-label">社員番号</label>
-                <input type="text" class="form-control" id="employee" value="<?php echo $driver[3]; ?>" style="text-align:center" disabled>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card-body">
+                    <form action="../function/update_post.php" method="post">
+                        <div class="mb-3">
+                            <label for="employee" class="form-label">社員番号</label>
+                            <input type="text" minlength="9" maxlength="9" class="form-control" id="employee" name="employee" value="<?php echo $driver[3]; ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="driver_id" class="form-label">運転者ID</label>
+                            <input type="text" minlength="3" maxlength="8" class="form-control" id="driver_id" name="driver_id" value="<?php echo $driver[17]; ?>">
+                        </div>
+                        <div class="mb-3">
+                            <label for="lname" class="form-label">姓（LastName）</label>
+                            <input type="text" class="form-control" id="lname" name="lname" value="<?php echo $driver[0]; ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fname" class="form-label">名（FirstName）</label>
+                            <input type="text" class="form-control" id="fname" name="fname" value="<?php echo $driver[1]; ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="auth" class="form-label">アクセス権 [0]user、[1]admin</label>
+                            <input type="number" max="1" min="0" class="form-control" id="auth" name="auth" value="<?php echo $driver[18]; ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">MailAddress</label>
+                            <input type="email" class="form-control" id="address" name="address" value="<?php echo $driver[19]; ?>" required>
+                        </div>
+                        <div>
+                            <input type="hidden" class="form-control" name="d_id" value="<?php echo $driver[2]; ?>">
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-outline-primary">ドライバー情報修正</button>
+                            <button type="button" onclick="history.back()" class="btn btn-outline-warning">戻る</button>
+                        </div>
+                    </form>
+
+                </div>
             </div>
-            <div class="col-xl-2">
-                <label for="driver_id" class="form-label">運転者ID</label>
-                <input type="text" minlength="3" maxlength="8" class="form-control" id="driver_id" name="driver_id" value="<?php echo $driver[17]; ?>" style="text-align:right">
+            <div class="col-lg-6 offset-lg-2 offset-md-0">
+                <canvas id="myChart"></canvas>
             </div>
-            <div class="col-xl-2">
-                <label for="lname" class="form-label">姓（LastName）</label>
-                <input type="text" class="form-control" id="lname" name="lname" value="<?php echo $driver[0]; ?>" required>
-            </div>
-            <div class="col-xl-2">
-                <label for="fname" class="form-label">名（FirstName）</label>
-                <input type="text" class="form-control" id="fname" name="fname" value="<?php echo $driver[1]; ?>" required>
-            </div>
-            <div class="col-xl-1">
-                <label for="auth" class="form-label">アクセス権</label>
-                <input type="number" class="form-control" id="auth" name="auth" value="<?php echo $driver[18]; ?>" style="text-align:center" required>
-            </div>
-            <div class=" col-xl-3">
-                <label for="address" class="form-label">MailAddress</label>
-                <input type="email" class="form-control" id="address" name="address" value="<?php echo $driver[19]; ?>" required>
-            </div>
-            <div>
-                <input type="hidden" class="form-control" name="d_id" value="<?php echo $driver[2]; ?>">
-            </div>
-            <div class="col-12">
-                <button type="submit" class="btn btn-outline-primary">ドライバー情報修正</button>
-                ※アクセス権：[0]user、[1]admin
-            </div>
-        </form>
+        </div>
     </div>
 
+    <!-- chart.js-script -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('myChart');
+        new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['気分の安定', '危険敢行度・用心深さ', '生活安全度', '遵法態度', '安全意識・意欲'],
+                datasets: [{
+                    label: 'ドライバー安全レベルチェック評価',
+                    data: [<?php echo $genre; ?>],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 10,
+                    }
+                },
+            }
+        });
+    </script>
     <!-- bootstrap-script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>

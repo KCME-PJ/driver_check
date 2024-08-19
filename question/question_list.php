@@ -80,7 +80,7 @@
         <b>
             <p style="font-family: Meiryo UI;">設問を修正する場合は <font color="green"><i class="bi bi-pencil-square"></i></font> ボタン、削除は <font color="red"><i class="bi bi-trash3-fill"></i></font> ボタン</p>
         </b>
-        <a class="btn btn-outline-danger btn-sm" href="./question_submit.html">設問追加</a>
+        <a class="btn btn-outline-danger btn-sm" href="./question_submit.php">設問追加</a>
         <table id="questionList" class="table table-striped align-middle" style="font-family: Meiryo UI;">
             <thead>
                 <tr>

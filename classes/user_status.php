@@ -2,7 +2,7 @@
 class UserStatus
 {
     private $d_id;
-    private $driver_id;
+    private $driver_id = null;
     private $access_authority;
     private $employee_number;
     private $l_name;

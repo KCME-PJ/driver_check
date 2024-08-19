@@ -25,7 +25,7 @@ function validateUpdateData($data)
 
     //メールのチェック（半角英数）
     if (!preg_match('/^[a-zA-Z0-9@._-]+$/', $data['email'])) {
-        $errors[] = "メールアドレスは半角英数で入力してください。";
+        $errors[] = "正しいメールアドレスか確認をお願いします。";
     }
 
     //アクセス権のチェック（半角数字）

@@ -86,6 +86,7 @@
                     <th scope="col">メールアドレス</th>
                     <th scope="col">権限</th>
                     <th scope="col">登録日</th>
+                    <th scope="col">情報更新日</th>
                     <th scope="col">Pass最終更新日</th>
                     <th scope="col">詳細/削除</th>
                 </tr>
@@ -108,6 +109,7 @@
                     $mail = $user->getEmail();
                     $access_level = $user->getAccessLevel();
                     $create_at = $user->getCreateAt();
+                    $update_at = $user->getUpdateAt();
                     $reset_at = $user->getResetAt();
                     $name = $lname . " " . $fname;
                     $msg = "$name さんを削除しても大丈夫ですか？";
@@ -121,6 +123,7 @@
                                     <td>$mail</td>
                                     <td>$access_level</td>
                                     <td>$create_at</td>
+                                    <td>$update_at</td>
                                     <td>$reset_at</td>
                                     <td>
                                         <a class="btn btn-outline-success btn-sm" href="scoring_history.php?d_id=$d_id">

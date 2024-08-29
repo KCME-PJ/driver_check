@@ -15,7 +15,7 @@
     <?php
     session_start();
     if (!isset($_SESSION['join'])) {
-        header('location: ./login.html');
+        header('location: ../login.html');
         exit();
     }
     require_once '../db_access/database.php';

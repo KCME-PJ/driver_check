@@ -9,6 +9,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+        /* 用紙サイズの指定する(A4=210mmx297mm、A3=297mm×420mm) */
+        @media print {
+            body {
+                margin: 0;
+                width: 297mm;
+                height: 210mm;
+                margin-right: auto;
+                margin-left: auto;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -93,84 +106,86 @@
             </div>
         </div>
     </nav>
-    <div class="container mt-3">
-        <table class="table table-bordered">
-            <thead>
-                <tr class="text-center">
-                    <th scope="col">テスト日</th>
-                    <th scope="col">社員番号</th>
-                    <th scope="col">氏名</th>
-                    <th colspan="2">総合得点</th>
-                    <th colspan="2">気分の安定</th>
-                    <th colspan="2">用心深さ</th>
-                    <th colspan="2">生活安定度</th>
-                    <th colspan="2">遵法態度</th>
-                    <th colspan="2">安全意識</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="text-center">
-                    <td scope="row"><?php echo date('Y年m月d日_H時i分', $time_stamp); ?></td>
-                    <td><?php echo $driver[3]; ?></td>
-                    <td><?php echo $driver_name; ?></td>
-                    <td><?php echo $driver[4]; ?></td>
-                    <td><?php echo $driver[5]; ?></td>
-                    <td><?php echo $driver[6]; ?></td>
-                    <td><?php echo $driver[7]; ?></td>
-                    <td><?php echo $driver[8]; ?></td>
-                    <td><?php echo $driver[9]; ?></td>
-                    <td><?php echo $driver[10]; ?></td>
-                    <td><?php echo $driver[11]; ?></td>
-                    <td><?php echo $driver[12]; ?></td>
-                    <td><?php echo $driver[13]; ?></td>
-                    <td><?php echo $driver[14]; ?></td>
-                    <td><?php echo $driver[15]; ?></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="card-body">
-                    <form action="../function/update_post.php" method="post">
-                        <div class="mb-3">
-                            <label for="employee" class="form-label">社員番号</label>
-                            <input type="text" minlength="9" maxlength="9" class="form-control" id="employee" name="employee" value="<?php echo $driver[3]; ?>" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="driver_id" class="form-label">運転者ID</label>
-                            <input type="text" minlength="3" maxlength="8" class="form-control" id="driver_id" name="driver_id" value="<?php echo $driver[17]; ?>">
-                        </div>
-                        <div class="mb-3">
-                            <label for="lname" class="form-label">姓（LastName）</label>
-                            <input type="text" class="form-control" id="lname" name="lname" value="<?php echo $driver[0]; ?>" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="fname" class="form-label">名（FirstName）</label>
-                            <input type="text" class="form-control" id="fname" name="fname" value="<?php echo $driver[1]; ?>" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="auth" class="form-label">アクセス権 [0]user、[1]admin</label>
-                            <input type="number" max="1" min="0" class="form-control" id="auth" name="auth" value="<?php echo $driver[18]; ?>" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="address" class="form-label">MailAddress</label>
-                            <input type="email" class="form-control" id="address" name="address" value="<?php echo $driver[19]; ?>" required>
-                        </div>
-                        <div>
-                            <input type="hidden" class="form-control" name="d_id" value="<?php echo $driver[2]; ?>">
-                        </div>
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-outline-primary">ドライバー情報修正</button>
-                            <button type="button" onclick="history.back()" class="btn btn-outline-warning">戻る</button>
-                        </div>
-                    </form>
+        <div class="container mt-3">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="text-center">
+                        <th scope="col">テスト日</th>
+                        <th scope="col">社員番号</th>
+                        <th scope="col">氏名</th>
+                        <th colspan="2">総合得点</th>
+                        <th colspan="2">気分の安定</th>
+                        <th colspan="2">用心深さ</th>
+                        <th colspan="2">生活安定度</th>
+                        <th colspan="2">遵法態度</th>
+                        <th colspan="2">安全意識</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-center">
+                        <td scope="row"><?php echo date('Y年m月d日_H時i分', $time_stamp); ?></td>
+                        <td><?php echo $driver[3]; ?></td>
+                        <td><?php echo $driver_name; ?></td>
+                        <td><?php echo $driver[4]; ?></td>
+                        <td><?php echo $driver[5]; ?></td>
+                        <td><?php echo $driver[6]; ?></td>
+                        <td><?php echo $driver[7]; ?></td>
+                        <td><?php echo $driver[8]; ?></td>
+                        <td><?php echo $driver[9]; ?></td>
+                        <td><?php echo $driver[10]; ?></td>
+                        <td><?php echo $driver[11]; ?></td>
+                        <td><?php echo $driver[12]; ?></td>
+                        <td><?php echo $driver[13]; ?></td>
+                        <td><?php echo $driver[14]; ?></td>
+                        <td><?php echo $driver[15]; ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card-body">
+                        <form action="../function/update_post.php" method="post">
+                            <div class="mb-3">
+                                <label for="employee" class="form-label">社員番号</label>
+                                <input type="text" minlength="9" maxlength="9" class="form-control" id="employee" name="employee" value="<?php echo $driver[3]; ?>" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="driver_id" class="form-label">運転者ID</label>
+                                <input type="text" minlength="3" maxlength="8" class="form-control" id="driver_id" name="driver_id" value="<?php echo $driver[17]; ?>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="lname" class="form-label">姓（LastName）</label>
+                                <input type="text" class="form-control" id="lname" name="lname" value="<?php echo $driver[0]; ?>" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="fname" class="form-label">名（FirstName）</label>
+                                <input type="text" class="form-control" id="fname" name="fname" value="<?php echo $driver[1]; ?>" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="auth" class="form-label">アクセス権 [0]user、[1]admin</label>
+                                <input type="number" max="1" min="0" class="form-control" id="auth" name="auth" value="<?php echo $driver[18]; ?>" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address" class="form-label">MailAddress</label>
+                                <input type="email" class="form-control" id="address" name="address" value="<?php echo $driver[19]; ?>" required>
+                            </div>
+                            <div>
+                                <input type="hidden" class="form-control" name="d_id" value="<?php echo $driver[2]; ?>">
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-outline-primary">ドライバー情報修正</button>
+                                <button type="button" onclick="history.back()" class="btn btn-outline-warning">戻る</button>
+                            </div>
+                        </form>
 
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-6 offset-lg-2 offset-md-0">
-                <canvas id="myChart"></canvas>
+                <div class="col-lg-6 offset-lg-2 offset-md-0">
+                    <canvas id="myChart"></canvas>
+                </div>
             </div>
         </div>
     </div>

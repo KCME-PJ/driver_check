@@ -88,7 +88,7 @@
                                 <input class="form-control col-sm-1 mt-3" type="text" name="l_name" placeholder="苗字（LastName）" required>
                                 <input class="form-control col-sm-1 mt-3" type="text" name="f_name" placeholder="名前（FirstName）" required>
                                 <input class="form-control col-sm-1 mt-3" type="email" name="email" placeholder="Email address" required>
-                                <input class="form-control col-sm-1 mt-3" type="password" name="pass" placeholder="Password" required>
+                                <input class="form-control col-sm-1 mt-3" type="password" name="pass" placeholder="Password（社員番号下4桁）" required>
                                 <button type="submit" class="btn btn-primary mt-3">登録</button>
                             </div>
                         </div>

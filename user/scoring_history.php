@@ -11,15 +11,36 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
     <style>
-        /* 用紙サイズの指定する(A4=210mmx297mm、A3=297mm×420mm) */
         @media print {
-            body {
+            .hide_print {
+                display: none;
+            }
+
+            .bold_p {
+                font-weight: bold;
+            }
+
+            .style_p {
                 margin: 0;
                 width: 297mm;
-                height: 210mm;
+                height: 179mm;
                 margin-right: auto;
                 margin-left: auto;
+                font-size: 12pt;
             }
+
+            .spacing_p {
+                letter-spacing: -1px;
+            }
+        }
+
+        /* グラフの大きさを調整する */
+        .chart_canvas {
+            position: relative;
+            width: 560px;
+            height: 560px;
+            overflow: hidden;
+            margin: 0px;
         }
     </style>
 </head>
@@ -62,7 +83,7 @@
     $ans_5 = $driver[14];
     $genre = $ans_1 . "," . $ans_2 . "," . $ans_3 . "," . $ans_4 . "," . $ans_5;
     ?>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="hide_print navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand">管理画面</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -106,89 +127,91 @@
             </div>
         </div>
     </nav>
-    <div class="container">
-        <div class="container mt-3">
+    <div class="style_p container">
+        <div class="mt-3">
             <table class="table table-bordered">
                 <thead>
                     <tr class="text-center">
                         <th scope="col">テスト日</th>
                         <th scope="col">社員番号</th>
                         <th scope="col">氏名</th>
-                        <th colspan="2">総合得点</th>
-                        <th colspan="2">気分の安定</th>
-                        <th colspan="2">用心深さ</th>
-                        <th colspan="2">生活安定度</th>
-                        <th colspan="2">遵法態度</th>
-                        <th colspan="2">安全意識</th>
+                        <th class="spacing_p" colspan="2">総合得点</th>
+                        <th class="spacing_p" colspan="2">気分の安定</th>
+                        <th class="spacing_p" colspan="2">用心深さ</th>
+                        <th class="spacing_p" colspan="2">生活安定度</th>
+                        <th class="spacing_p" colspan="2">遵法態度</th>
+                        <th class="spacing_p" colspan="2">安全意識</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="text-center">
-                        <td scope="row"><?php echo date('Y年m月d日_H時i分', $time_stamp); ?></td>
+                        <td class="spacing_p" scope="row"><?php echo date('Y年m月d日_H時i分', $time_stamp); ?></td>
                         <td><?php echo $driver[3]; ?></td>
-                        <td><?php echo $driver_name; ?></td>
+                        <td class="spacing_p"><?php echo $driver_name; ?></td>
                         <td><?php echo $driver[4]; ?></td>
-                        <td><?php echo $driver[5]; ?></td>
+                        <td class="bold_p"><?php echo $driver[5]; ?></td>
                         <td><?php echo $driver[6]; ?></td>
-                        <td><?php echo $driver[7]; ?></td>
+                        <td class="bold_p"><?php echo $driver[7]; ?></td>
                         <td><?php echo $driver[8]; ?></td>
-                        <td><?php echo $driver[9]; ?></td>
+                        <td class="bold_p"><?php echo $driver[9]; ?></td>
                         <td><?php echo $driver[10]; ?></td>
-                        <td><?php echo $driver[11]; ?></td>
+                        <td class="bold_p"><?php echo $driver[11]; ?></td>
                         <td><?php echo $driver[12]; ?></td>
-                        <td><?php echo $driver[13]; ?></td>
+                        <td class="bold_p"><?php echo $driver[13]; ?></td>
                         <td><?php echo $driver[14]; ?></td>
-                        <td><?php echo $driver[15]; ?></td>
+                        <td class="bold_p"><?php echo $driver[15]; ?></td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="card-body">
-                        <form action="../function/update_post.php" method="post">
-                            <div class="mb-3">
-                                <label for="employee" class="form-label">社員番号</label>
-                                <input type="text" minlength="9" maxlength="9" class="form-control" id="employee" name="employee" value="<?php echo $driver[3]; ?>" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="driver_id" class="form-label">運転者ID</label>
-                                <input type="text" minlength="3" maxlength="8" class="form-control" id="driver_id" name="driver_id" value="<?php echo $driver[17]; ?>">
-                            </div>
-                            <div class="mb-3">
-                                <label for="lname" class="form-label">姓（LastName）</label>
-                                <input type="text" class="form-control" id="lname" name="lname" value="<?php echo $driver[0]; ?>" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="fname" class="form-label">名（FirstName）</label>
-                                <input type="text" class="form-control" id="fname" name="fname" value="<?php echo $driver[1]; ?>" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="auth" class="form-label">アクセス権 [0]user、[1]admin</label>
-                                <input type="number" max="1" min="0" class="form-control" id="auth" name="auth" value="<?php echo $driver[18]; ?>" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="address" class="form-label">MailAddress</label>
-                                <input type="email" class="form-control" id="address" name="address" value="<?php echo $driver[19]; ?>" required>
-                            </div>
-                            <div>
-                                <input type="hidden" class="form-control" name="d_id" value="<?php echo $driver[2]; ?>">
-                            </div>
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-outline-primary">ドライバー情報修正</button>
-                                <button type="button" onclick="history.back()" class="btn btn-outline-warning">戻る</button>
-                            </div>
-                        </form>
-
-                    </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card-body">
+                    <form action="../function/update_post.php" method="post">
+                        <div class="mb-3">
+                            <label for="employee" class="form-label">社員番号</label>
+                            <input type="text" minlength="9" maxlength="9" class="form-control form-control-sm" id="employee" name="employee" value="<?php echo $driver[3]; ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="driver_id" class="form-label">運転者ID</label>
+                            <input type="text" minlength="3" maxlength="8" class="form-control form-control-sm" id="driver_id" name="driver_id" value="<?php echo $driver[17]; ?>">
+                        </div>
+                        <div class="mb-3">
+                            <label for="lname" class="form-label">姓（LastName）</label>
+                            <input type="text" class="form-control form-control-sm" id="lname" name="lname" value="<?php echo $driver[0]; ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fname" class="form-label">名（FirstName）</label>
+                            <input type="text" class="form-control form-control-sm" id="fname" name="fname" value="<?php echo $driver[1]; ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="auth" class="form-label">アクセス権 [0]user、[1]admin</label>
+                            <input type="number" max="1" min="0" class="form-control form-control-sm" id="auth" name="auth" value="<?php echo $driver[18]; ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">MailAddress</label>
+                            <input type="email" class="form-control form-control-sm" id="address" name="address" value="<?php echo $driver[19]; ?>" required>
+                        </div>
+                        <div>
+                            <input type="hidden" class="form-control form-control-sm" name="d_id" value="<?php echo $driver[2]; ?>">
+                        </div>
+                        <div class="hide_print col-12">
+                            <button type="submit" class="btn btn-outline-primary">ドライバー情報修正</button>
+                            <button type="button" class="btn btn-outline-success" onclick="window.print(); return false;">このページを印刷する</button>
+                            <button type="button" class="btn btn-outline-warning" onclick="history.back()">戻る</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="col-lg-6 offset-lg-2 offset-md-0">
+            </div>
+            <div class="col-lg-7 offset-lg-1 offset-md-0">
+                <div class="chart_canvas">
                     <canvas id="myChart"></canvas>
                 </div>
             </div>
         </div>
     </div>
+
+
 
     <!-- chart.js-script -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -197,18 +220,46 @@
         new Chart(ctx, {
             type: 'radar',
             data: {
-                labels: ['気分の安定', '危険敢行度・用心深さ', '生活安全度', '遵法態度', '安全意識・意欲'],
+                labels: [
+                    ["気分の安定", "判定(<?php echo $driver[7]; ?>)"],
+                    ["危険敢行度・用心深さ", "判定(<?php echo $driver[9]; ?>)"],
+                    ["生活安全度", "判定(<?php echo $driver[11]; ?>)"],
+                    ["遵法態度", "判定(<?php echo $driver[13]; ?>)"],
+                    ["安全意識・意欲", "判定(<?php echo $driver[15]; ?>)"]
+                ],
                 datasets: [{
-                    label: 'ドライバー安全レベルチェック評価',
+                    label: '評価値',
                     data: [<?php echo $genre; ?>],
                     borderWidth: 1
                 }]
             },
             options: {
+                responsive: true,
+                //凡例とタイトルの設定
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
+                    title: {
+                        display: true,
+                        text: '安全レベルチェック評価',
+                        align: 'center',
+                        padding: 10,
+                        font: {
+                            size: 15,
+                        }
+                    }
+                },
                 scales: {
                     r: {
                         beginAtZero: true,
                         max: 10,
+                        //ラベルの設定
+                        pointLabels: {
+                            font: {
+                                size: 13,
+                            }
+                        }
                     }
                 },
             }

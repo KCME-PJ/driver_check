@@ -16,7 +16,7 @@ function answer_time($d_id)
         return "1";
     }
 
-    //前回からの経過時間を確認する、8時間以上であればテスト画面へ遷移する、8時間未満であればテスト結果画面へ遷移する
+    //前回からの経過時間を確認する、1週間（168h）以上であればテスト画面へ遷移する、1週間未満であればテスト結果画面へ遷移する
     $sql_time = <<<SQL
     SELECT * FROM answers WHERE d_id = ? ORDER BY create_at DESC LIMIT 1
     SQL;

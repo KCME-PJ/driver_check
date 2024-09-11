@@ -29,7 +29,7 @@ function answer_time($d_id)
         $a_time = strtotime($checker['create_at']);
         $today = strtotime(date("Y-m-d H:i:s"));
         $diff_time = ($today - $a_time) / 3600;     //時間に換算
-        if ($diff_time < 168) {                       //回答して168時間（1週間）以上のみ再度回答可
+        if ($diff_time < 168) {                     //回答して168時間（1週間）以上のみ再度回答可
             return "0";
         }
         return "1";
